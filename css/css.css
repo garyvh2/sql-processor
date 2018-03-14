@@ -1,0 +1,7 @@
+.container {
+    top: 80px;
+    position: relative;
+}
+.form-group > * {
+    margin-bottom: 10px;
+}

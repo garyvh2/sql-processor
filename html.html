@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- CSS Importings -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/css.css" rel="stylesheet">
+
+    <!-- JS Importings -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/js.js"></script>
+
+
+    <title>SQL Procedures</title>
+</head>
+
+<body>
+    <head class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">SQL Procedures</a>
+        </nav>
+    </head>
+    <main class="container">
+        <div class="row">
+                <div class="col">
+                    <div class="card border-primary mb-3">
+                        <div class="card-header">Processor</div>
+                        <div class="card-body">
+                            <form id="form" name="form">
+                                <div class="form-group">
+                                    <label class="col-form-label" for="table">Table Name</label>
+                                        <input id="table" name="table" class="form-control" type="textarea" placeholder="">
+                                    <label for="attributes">Table Attributes</label>
+                                        <textarea id="attributes" name="attributes" class="form-control"  rows="3"></textarea>
+                                    <legend>Methods</legend>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="insert" name="insert" checked>
+                                        INSERT
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="update" name="update"  checked>
+                                        UPDATE
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="delete" name="delete"  checked>
+                                        DELETE
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="select" name="select"  checked>
+                                        SELECT
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                        <input class="form-check-input" type="checkbox" id="list" name="list"  checked>
+                                        LIST
+                                        </label>
+                                    </div>
+                                    <button class="btn btn-primary" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-primary mb-3">
+                        <div class="card-header">Result SQL</div>
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+        
+
+
+    </main>
+
+</body>
+
+</html>
