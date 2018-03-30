@@ -114,8 +114,11 @@ storedProcedure.prototype.setParams = function () {
     if (_.size(_this.rowsDesc) > 0 && _this.includeParams) {
         var params = "(";
         _.each (_this.rowsDesc, row => {
-            if (_this.method.toLowerCase() == "insert" && row.name == _this.idAttr.name && _this.autoIncremental) return
-            params += "@P_" + row.name + "\t" + row.type + ",<br>";
+            if (_this.method.toLowerCase() == "insert" && row.name == _this.idAttr.name && _this.autoIncremental) {
+                return
+            } else {
+                params += "@P_" + row.name + "\t" + row.type + ",<br>";
+            }
         });
         params = params.substring(params.length -5, -5);
         params += ")<br>";
@@ -140,11 +143,15 @@ storedProcedure.prototype.setMethod = function () {
         case "update":
             method += "UPDATE " + _this.tableName + " SET "
             _.each (_this.rowsDesc, row => {
-                if (row.name != 'ID')
+                if (row.name == _this.idAttr.name && _this.autoIncremental) {
+                    return
+                } else {
                     method += row.name + " = " + "@P_" + row.name + ",";
+                }
             });
             method = method.substring(method.length -1, -1);
             method += " WHERE " + _this.idAttr.name + " = " + " @P_" + _this.idAttr.name
+            method += "<br>SELECT * FROM " + _this.tableName + " WHERE " + _this.idAttr.name + " = " + " @P_" + _this.idAttr.name;
 			break;
         case "delete":
             method += "DELETE FROM " + _this.tableName
@@ -163,10 +170,16 @@ storedProcedure.prototype.setMethod = function () {
             method = method.substring(method.length -1, -1);
             method += ") VALUES (";
             _.each (_this.rowsDesc, row => {
-                method += "@P_" + row.name + ",";
+                if (row.name == _this.idAttr.name && _this.autoIncremental) {
+                    return
+                } else {
+                    method += "@P_" + row.name + ",";
+                }
             });
             method = method.substring(method.length -1, -1);
             method += ")";
+            var selectField = _this.autoIncremental ? " @@IDENTITY" : " @P_" + _this.idAttr.name;
+            method += "<br>SELECT * FROM " + _this.tableName + " WHERE " + _this.idAttr.name + " = " + selectField;
 			break;
     }
     _this.sql += method + "<br>END<br>GO";
