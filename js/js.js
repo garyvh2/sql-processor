@@ -204,7 +204,11 @@ storedProcedure.prototype.setMethod = function () {
         case "insert":
             method += "INSERT INTO " + _this.tableName + " ("
             _.each (_this.rowsDesc, row => {
-                method += row.name + ",";
+                if (row.name == _this.idAttr.name && _this.autoIncremental) {
+                    return
+                } else {
+                    method += row.name + ",";
+                }
             });
             method = method.substring(method.length -1, -1);
             method += ") VALUES (";
