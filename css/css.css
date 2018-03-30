@@ -12,7 +12,8 @@ main.container {
 .panel-heading * {
     display: inline-block;
 }
-.panel-heading h4 {
+.panel-title {
+    cursor: pointer;
     font-size: 20px;
     vertical-align: middle;
     position: relative;
@@ -25,3 +26,10 @@ main.container {
     float: right;
     cursor: pointer;
 }
+
+pre {text-align: left; outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }

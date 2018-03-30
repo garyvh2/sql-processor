@@ -36,6 +36,34 @@ window.addEventListener("load", function () {
 
         document.data.push (table);
     }
+    window.show = function (index) {
+        this.document.querySelector("#templateSwal").appendChild(document.createElement('pre')).innerHTML = syntaxHighlight(JSON.stringify(document.data[index], undefined, 4));
+        template = $("#templateSwal").html();
+        swal({
+            title: document.data[index].name,
+            html: template,
+            showCloseButton: true,
+            showCancelButton: false
+          })
+    }
+    function syntaxHighlight(json) {
+        json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+            var cls = 'number';
+            if (/^"/.test(match)) {
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                } else {
+                    cls = 'string';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return '<span class="' + cls + '">' + match + '</span>';
+        });
+    }
     window.remove = function (index) {
         document.data.splice(index, 1);
         addToList (document.data);

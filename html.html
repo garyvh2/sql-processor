@@ -17,6 +17,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
     <script src="js/js.js"></script>
 
 
@@ -90,8 +91,7 @@
                                     </div>
                                 </div>
                                 
-                                <button class="btn btn-primary" type="submit">Add</button>
-                                <button class="btn btn-success" type="button" id="processSQL">Process</button>
+                                <button style="float: right;" class="btn btn-primary" type="submit">Add</button>
                             </div>
                         </form>
                     </div>
@@ -103,6 +103,7 @@
                     <div class="card-body">
                         <div id="target"></div>
                         <button onclick="reset()" class="btn btn-primary" type="button">Reset</button>
+                        <button class="btn btn-success" type="button" id="processSQL">Process</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +124,7 @@
     <% _.each(data, (item, index) => { %>
         <div class="panel-group">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div class="panel-heading" onclick="show(<%= index %>)">
                     <h4 class="panel-title">
                         <%= item.name %>
                     </h4>
@@ -132,6 +133,10 @@
             </div>
         </div>
     <% }); %>
+</script>
+
+<script type="text/html" id="templateSwal">
+
 </script>
 
 </html>
