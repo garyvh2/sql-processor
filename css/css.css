@@ -5,3 +5,23 @@ main.container {
 .form-group > * {
     margin-bottom: 10px;
 }
+.panel-heading {
+    position: relative;
+    margin: 10px 0;
+}
+.panel-heading * {
+    display: inline-block;
+}
+.panel-heading h4 {
+    font-size: 20px;
+    vertical-align: middle;
+    position: relative;
+}
+.panel-heading i {
+    position: relative;
+    font-size: 20px;
+    vertical-align: middle;
+    color: red;
+    float: right;
+    cursor: pointer;
+}

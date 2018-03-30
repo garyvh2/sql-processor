@@ -11,6 +11,9 @@
     <link href="css/css.css" rel="stylesheet">
 
     <!-- JS Importings -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+
+
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/underscore.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -99,6 +102,7 @@
                     <div class="card-header">Data</div>
                     <div class="card-body">
                         <div id="target"></div>
+                        <button onclick="reset()" class="btn btn-primary" type="button">Reset</button>
                     </div>
                 </div>
             </div>
@@ -116,13 +120,14 @@
 
 </body>
 <script type="text/html" id="template">
-    <% _.each(data, item => { %>
+    <% _.each(data, (item, index) => { %>
         <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
                         <%= item.name %>
                     </h4>
+                    <i onclick="remove(<%= index %>)" class="fas fa-times"></i>
                 </div>
             </div>
         </div>

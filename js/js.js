@@ -36,6 +36,14 @@ window.addEventListener("load", function () {
 
         document.data.push (table);
     }
+    window.remove = function (index) {
+        document.data.splice(index, 1);
+        addToList (document.data);
+    }
+    window.reset = function () {
+        document.data = [];
+        addToList (document.data);
+    }
     // >> Add to visual List
     var addToList = function (data) {
         var template = $("#template").html();
