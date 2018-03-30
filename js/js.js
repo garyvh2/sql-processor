@@ -24,6 +24,7 @@ window.addEventListener("load", function () {
         table.name      = tm.table;
         table.attributes = tm.attributes.replace (/\t+/g, "$").replace (/\n+/g, "&")
         table.autoIncremental = tm.autoincremental == "on";
+        table.alterProcedure = tm.alterProcedure == "on";
         var methods   = [
             tm.insert   == "on"   ? {method: "INSERT", idWhere: false, includeParams: true}: null,
             tm.update   == "on"   ? {method: "UPDATE", idWhere: false, includeParams: true}: null,
@@ -57,20 +58,21 @@ window.addEventListener("load", function () {
         clearToSQL();
         document.data.forEach(el => {
             var sql = ""
-            sql = new storedProcedure(el.name, el.methods, el.attributes, el.autoIncremental, el.id).process()  
+            sql = new storedProcedure(el.name, el.methods, el.attributes, el.autoIncremental, el.alterProcedure, el.id).process()  
             addToSQL (sql)
         });
     });
 });
 
 
-var storedProcedure = function (tableName, methods, params, autoIncremental, id) {
+var storedProcedure = function (tableName, methods, params, autoIncremental, alterProcedure, id) {
     var _this = this;
     _this.sqlOut = "";
     _this.id = id;
     _this.tableName = tableName;
     _this.methods = methods;
     _this.params = params;
+    _this.alterProcedure = alterProcedure;
     _this.autoIncremental = autoIncremental;
 }
 storedProcedure.prototype.process = function () {
@@ -106,7 +108,8 @@ storedProcedure.prototype.processParams = function () {
 }
 storedProcedure.prototype.setName = function () {
     var _this = this;
-    _this.sql += "CREATE PROCEDURE " + _this.method.toLowerCase() + "_" + _this.tableName.toLowerCase() + "<br>";
+    var type = _this.alterProcedure ? "ALTER" : "CREATE";
+    _this.sql += type + " PROCEDURE " + _this.method.toLowerCase() + "_" + _this.tableName.toLowerCase() + "<br>";
 }
 storedProcedure.prototype.setParams = function () {
     var _this = this;
