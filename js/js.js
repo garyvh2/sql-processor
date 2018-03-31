@@ -37,6 +37,7 @@ window.addEventListener("load", function () {
         document.data.push (table);
     }
     window.show = function (index) {
+        $('#templateSwal').empty();
         this.document.querySelector("#templateSwal").appendChild(document.createElement('pre')).innerHTML = syntaxHighlight(JSON.stringify(document.data[index], undefined, 4));
         template = $("#templateSwal").html();
         swal({
